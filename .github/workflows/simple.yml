@@ -8,12 +8,17 @@ jobs:
     # virtual machine instance
     runs-on: ubuntu-latest
     steps:
+      # for debbuging: https://docs.github.com/en/actions/configuring-and-managing-workflows/managing-a-workflow-run#enabling-debug-logging
+      # enabling or adding these secrets with true value: ACTIONS_RUNNER_DEBUG & ACTIONS_STEP_DEBUG on settings repo
       - name: echo a string
         run: eccho "hello world from github actions"
       - name: multiline script
         run: |
           node -v
           npm -v
-  # for debbuging: https://docs.github.com/en/actions/configuring-and-managing-workflows/managing-a-workflow-run#enabling-debug-logging
-  # enabling or adding these secrets with true value: ACTIONS_RUNNER_DEBUG & ACTIONS_STEP_DEBUG on settings repo
-  
+      - name: python commands
+        run: |
+          import platform
+          print(platform.processor())
+        shell: python
+        
