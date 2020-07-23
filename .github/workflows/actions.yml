@@ -1,6 +1,13 @@
 name: "Actions WorkFlow"
 
-on: [push]
+on: 
+  push:
+  pull_request:
+    types:
+      - closed
+      - assigned
+      - opened
+      - reopened
 
 jobs:
   run-github-actions:
@@ -14,10 +21,8 @@ jobs:
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
-          git clone git@github:$GITHUB_REPOSITORY
-          git checkout $GITHUB_SHA
-          pwd
-          ls -al
+        # git clone git@github:$GITHUB_REPOSITORY
+        # git checkout $GITHUB_SHA
       # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: Checkout Action
         uses: actions/checkout@v2
