@@ -10,6 +10,15 @@ jobs:
         run: |
           pwd
           ls -al
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
+          git clone git@github:$GITHUB_REPOSITORY
+          git checkout $GITHUB_SHA
+          pwd
+          ls -al
+      # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: Checkout Action
         uses: actions/checkout@v2
       - name: List files after checkout
